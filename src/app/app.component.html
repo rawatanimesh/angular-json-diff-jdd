@@ -24,43 +24,9 @@
   </div>
 
   <div class="diffcontainer">
-      <!-- <div id="report"></div> -->
+      <div id="report"></div>
       <pre id="out" class="left codeBlock"></pre>
       <pre id="out2" class="right codeBlock"></pre>
-      <!-- <ul id="toolbar" class="toolbar"></ul> -->
+      <ul style="display: none;" id="toolbar" class="toolbar"></ul>
   </div>
 </div>
-
-
-<!-- <ng-container *ngFor="let item of sampleArray;let i = index">
-  <div *ngIf="selectedArrayIndex != i"> 
-    Difference:
-    <differentiate 
-      [allowRevert]="enableRevert"
-      [allowAdvance]="enableAdvance"
-      (onrevert)="revert($event)"
-      (onadvance)="advance($event)"
-      (ondifference)="ondifference($event)"
-      [namedRootObject]="namedRootObject"
-      [leftSideToolTip]="'pull from ' + selectedLeft + ' file'"
-      [rightSideToolTip]="'pull from ' + selectedRight + ' file'"
-      [onlyShowDifferences]="onlyShowDifferences"
-      [attributeOrderIsImportant]="attributeOrderIsImportant"
-      [leftSideObject]="sampleArray[selectedArrayIndex]" 
-      [rightSideObject]="item">
-    </differentiate>
-
-    <div class="json-wrapper">
-      <div class="json-view left" [innerHTML]="sampleArray[selectedArrayIndex] | json"></div>
-      <div class="json-view right" [innerHTML]="item | json"></div>  
-    </div>
-  </div>
-
-  <div class="json-wrapper">
-    <div [innerHTML]="actions[actions.length - 1]"></div>
-  </div>
-
-   <ul class="logger">
-    <li [innerHTML]="action | json" *ngFor="let action of actions"></li>
-  </ul>
-</ng-container> -->

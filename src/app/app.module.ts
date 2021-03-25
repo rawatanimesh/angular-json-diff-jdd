@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DifferentiateModule } from '@sedeh/differentiate';
 
 @NgModule({
   declarations: [
@@ -11,8 +10,7 @@ import { DifferentiateModule } from '@sedeh/differentiate';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    DifferentiateModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
