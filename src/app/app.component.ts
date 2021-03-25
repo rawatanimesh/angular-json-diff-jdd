@@ -1,22 +1,103 @@
-import { Component, OnInit, Renderer2, AfterViewInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
+
+  sampleArray2 = [
+    {
+      "Aidan Gillen": {
+        "array": ["Game of Thron\"es", "The Wire"],
+        "string": "some string",
+        "int": 2,
+        "aboolean": true,
+        "boolean": false,
+        "object": {
+          "foo": "bar",
+          "object1": {
+            "new prop1": "new prop value",
+            "new prop2": "new prop value"
+          },
+          "object2": {
+            "new prop1": "new prop value"
+          },
+          "object3": {
+            "new prop1": "new prop value"
+          },
+          "object4": {
+            "new prop1": "new prop value"
+          }
+        }
+      },
+      "Amy Ryan": {
+        "one": "In Treatment",
+        "two": "The Wire"
+      },
+      "Annie Fitzgerald": ["Big Love", "True Blood"],
+      "Anwan Glover": ["Treme", "The Wire"],
+      "Alexander Skarsgard": ["Generation Kill", "True Blood"],
+      "Clarke Peters": null,
+      "Bumbulbee": "n/a",
+      "id": "UHN1TKY100401133",
+      "date": "2021-02-09",
+      "status": "200",
+      "type": "MME"
+    },
+    {
+      "Aidan Gillen": {
+        "array": ["Game of Thron\"es", "The Wire"],
+        "string": "some string",
+        "int": 2,
+        "aboolean": true,
+        "boolean": true,
+        "object": {
+          "foo": "bar",
+          "object1": {
+            "new prop1": "new prop value"
+          },
+          "object2": {
+            "new prop1": "new prop value"
+          },
+          "object3": {
+            "new prop1": "new prop value"
+          },
+          "object4": {
+            "new prop1": "new prop value"
+          }
+        }
+      },
+      "Amy Ryan": {
+        "one": "In Treatment",
+        "two": "The Wire"
+      },
+      "Annie Fitzgerald": ["Big Love", "True Blood","True Blood2"],
+      "Anwan Glover": ["Treme", "The Wire"],
+      "Alexander Skarsgard": ["Generation Kill", "True Blood"],
+      "Clarke Peters": null,
+      "Clarke Peters2": null,
+      "id": "UHN1TKY100401132",
+      "date": "2021-02-10",
+      "status": "200",
+      "type": "MME"
+    }
+  ]
 
   sampleArray = [{
     id: 1,
+    "date": "2021-02-10",
+    "status": "200",
+    "type": "MME",
     occupation: "engineer",
     firstname: "masoud",
+    middleName: "saif",
     lastname: "salehi",
     address: {
       street: "2345 blagio dr",
       city: "Los Angeles",
-      countries: ["US","BS","CS"]
+      countries: ["US","BS","DS","CS"]
     },
     data: [
       [
@@ -39,71 +120,15 @@ export class AppComponent implements OnInit, AfterViewInit {
         "Good things are here!"
       ]
     ]
-  },
-  // {
-  //   id: 1,
-  //   occupation: "engineer",
-  //   firstname: "ani",
-  //   lastname: "rawat",
-  //   address: {
-  //     street: "2345 blagio dr",
-  //     city: "Delhi",
-  //     countries: ["India"]
-  //   },
-  //   data: [
-  //     [
-  //       "Better things yet to come!"
-  //     ]
-  //   ]
-  // }
+  }
 ]
 
-constructor(private renderer: Renderer2, ) {}
+constructor() {}
 
-  ngOnInit(){
-    
+  ngOnInit(){}
+
+  compare(){
+    document.getElementById('compare').click();
   }
 
-  ngAfterViewInit(){
-    this.addDiffFiles();
-  }
-
-  addDiffFiles(){
-    this.addCssToElement('assets/jdd-resources/styles/reset.css');
-    this.addCssToElement('assets/jdd-resources/styles/throbber.css');
-    this.addCssToElement('assets/jdd-resources/styles/jdd.css');
-    new Observable(res => {
-     this.addJsToElement('assets/jdd-resources/js-files/jQuery.min.js').onload = (test) => {
-      // console.log('bpmn-viewer.js', test)
-       return res.next();
-       };
-    }).subscribe(data => {
-      this.addJsToElement('assets/jdd-resources/js-files/jsl.format.js').onload = (test) => {
-        console.log('app.js', test);
-        this.addJsToElement('assets/jdd-resources/js-files/jsl.parser.js');
-        // this.addJsToElement('assets/jdd-resources/js-files/jsl.interactions.js');
-        this.addJsToElement('assets/jdd-resources/js-files/jdd.js');
-        // this.showInitialBpmnFiles();
-        };
-    })
-  }
-
-  addCssToElement(src: string){
-    var headID = document.getElementsByTagName('head')[0];
-    var link = document.createElement('link');
-    link.type = 'text/css';
-    link.rel = 'stylesheet';
-    link.media = 'screen';
-    link.href = src;
-    headID.appendChild(link);
-  }
-
-  addJsToElement(src: string): HTMLScriptElement {
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.charset = 'utf-8';
-    script.src = src;
-    this.renderer.appendChild(document.body, script);
-    return script;
-  }
 }

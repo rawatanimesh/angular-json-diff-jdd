@@ -1,32 +1,5 @@
-
-<div id="main">
-    
-  <div class="initContainer">
-      <div class="left">
-          <textarea spellcheck="false" id="textarealeft" placeholder="Enter JSON to compare, enter an URL to JSON" tabindex="1"></textarea>
-          <pre id="errorLeft" class="error"></pre>
-          <span class="fileInput">or <input type="file" id="fileLeft" onchange="jdd.handleFiles(this.files, 'left')" tabindex="4"></span>
-      </div>
-
-      <div class="center">
-          <button id="compare" tabindex="3">Compare</button>
-          <div class="throbber-loader"></div>
-          <!-- <br/><br/> -->
-          <!-- or try some<br /><a href="#" id="sample">sample data</a> -->
-
-      </div>
-
-      <div class="right">
-          <textarea spellcheck="false" class="right" id="textarearight" placeholder="Enter JSON to compare, enter an URL to JSON" tabindex="2"></textarea>
-          <pre id="errorRight" class="error"></pre>
-          <span class="fileInput">or <input type="file" id="fileRight" onchange="jdd.handleFiles(this.files, 'right')" tabindex="5"></span>
-      </div>
-  </div>
-
-  <div class="diffcontainer">
-      <div id="report"></div>
-      <pre id="out" class="left codeBlock"></pre>
-      <pre id="out2" class="right codeBlock"></pre>
-      <ul style="display: none;" id="toolbar" class="toolbar"></ul>
-  </div>
-</div>
+<app-json-comparison
+  [leftTree]="sampleArray2[0]"
+  [rightTree]="sampleArray2[1]"
+></app-json-comparison>
+<button (click)="compare()">Compare</button>

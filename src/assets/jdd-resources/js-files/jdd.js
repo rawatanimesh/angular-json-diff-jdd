@@ -139,6 +139,7 @@ var jdd = {
                 }
             }
         }
+        return jdd.diffs;
     },
 
     /**
