@@ -5,7 +5,7 @@ This is a reusable angular component which helps in showing differences between 
 
 ## Demo
 
-Checkout the demo - 
+Checkout the demo - https://json-difference.web.app/
 
 <img width="950" alt="Capture" src="https://user-images.githubusercontent.com/25823744/112673700-09be5900-8e8b-11eb-83b9-1ea7622c89d9.PNG">
 
