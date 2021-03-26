@@ -1,11 +1,13 @@
 # JsonDiffChecker
 
-This angualr compoent has been created using source code from  http://www.jsondiff.com/ tool. 
+This angular compoent has been created using source code from  http://www.jsondiff.com/ tool. 
 This is a reusable angular component which helps in showing differences between two JSON objects.
 
 ## Demo
 
 Checkout the demo - 
+
+<img width="950" alt="Capture" src="https://user-images.githubusercontent.com/25823744/112673700-09be5900-8e8b-11eb-83b9-1ea7622c89d9.PNG">
 
 ## Adding the component in your project
 ```
@@ -27,3 +29,7 @@ Checkout the demo -
 `
 document.getElementById('compare').click();
 `
+
+## Author
+
+animesh.rawat20@gmail.com
