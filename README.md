@@ -1,27 +1,24 @@
 # JsonDiffChecker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.2.
+This angular compoent has been created using source code from  http://www.jsondiff.com/ tool. 
+This is a reusable angular component which helps in showing differences between two JSON objects.
 
-## Development server
+## Demo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Checkout the demo - 
 
-## Code scaffolding
+<img width="950" alt="Capture" src="https://user-images.githubusercontent.com/25823744/112673700-09be5900-8e8b-11eb-83b9-1ea7622c89d9.PNG">
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Adding the component in your project
+```
+1) Add the 'jdd' javascript files in your asset folder. You can copy it ffrom this project from 'assets/jdd-files'.
+2) Copy 'json-comparison' component from here to your project. Import it in your module.
+3) Add the 'app-json-comparison' html template in your parent component to get output and input as well as json differences.
+4) In your parent component add click on button with id 'compare' to get your results.
+5) You can send true or false based on your requirement and show/hide things like difference report.
+6) The output 'differenceReport' gives a detailed report on changes in JSON format which you can use for your purpose.
+```
 
-## Build
+## Author
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+animesh.rawat20@gmail.com
