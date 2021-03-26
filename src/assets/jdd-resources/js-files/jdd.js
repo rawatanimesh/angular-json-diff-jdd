@@ -942,7 +942,15 @@ var jdd = {
         }
 
         report.append(filterBlock);
-
+        let reportData = 
+        {
+            totalDiffCount: jdd.diffs.length,
+            incorrectTypes: typeCount,
+            unequalValues: eqCount,
+            missingProperties: missingCount
+        };
+        document.getElementById('reportData').innerHTML = JSON.stringify(reportData);
+        // console.log(jdd);
 
     },
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Renderer2, AfterViewInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2, AfterViewInit, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,9 +10,12 @@ export class JsonComparisonComponent implements OnInit, OnDestroy, AfterViewInit
 
   @Input() leftTree: any;
   @Input() rightTree: any;
-
+  @Input() hideInitialStep: boolean = true;
+  @Input() hideReport: boolean = true;
+  @Output() differenceReport:EventEmitter<any> = new EventEmitter();
+  @ViewChild('compare') elementRef:ElementRef;
   constructor(
-    private renderer: Renderer2, 
+    private renderer: Renderer2
     ) { }
 
   ngOnInit(): void {
@@ -20,7 +23,16 @@ export class JsonComparisonComponent implements OnInit, OnDestroy, AfterViewInit
 
   ngAfterViewInit(){
     this.addDiffFiles();
+    this.renderer.listen(this.elementRef.nativeElement, 'click', () => {
+        setTimeout(()=>{
+        this.emitReportData((document.getElementById('reportData') as HTMLInputElement).innerHTML);
+      },10);
+    });
   }
+
+  emitReportData(data){
+    this.differenceReport.emit(JSON.parse(data));
+}
 
   addDiffFiles(){
     this.addCssToElement('assets/jdd-resources/styles/reset.css');
@@ -28,16 +40,14 @@ export class JsonComparisonComponent implements OnInit, OnDestroy, AfterViewInit
     this.addCssToElement('assets/jdd-resources/styles/jdd.css');
     new Observable(res => {
      this.addJsToElement('assets/jdd-resources/js-files/jQuery.min.js').onload = (test) => {
-      // console.log('bpmn-viewer.js', test)
+      // console.log('jQuery.min.js', test)
        return res.next();
        };
     }).subscribe(data => {
       this.addJsToElement('assets/jdd-resources/js-files/jsl.format.js').onload = (test) => {
-        // console.log('app.js', test);
+        // console.log('jsl.format.js', test);
         this.addJsToElement('assets/jdd-resources/js-files/jsl.parser.js');
-        // this.addJsToElement('assets/jdd-resources/js-files/jsl.interactions.js');
         this.addJsToElement('assets/jdd-resources/js-files/jdd.js');
-        // this.showInitialBpmnFiles();
         };
     })
   }

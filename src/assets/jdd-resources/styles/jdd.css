@@ -110,13 +110,13 @@ div.center {
     
 
 pre.codeBlock.left {
-    width: 40%;
+    width: 45%;
     display: inline-block;
     vertical-align: top;
 }
 
 pre.codeBlock.right {
-    width: 40%;
+    width: 45%;
     display: inline-block;
     vertical-align: top;
     margin-left: 1em;

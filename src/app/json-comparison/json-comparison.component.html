@@ -1,7 +1,7 @@
 
 <div id="main">
     
-    <div class="initContainer" hidden>
+    <div class="initContainer" [hidden]="hideInitialStep">
         <div class="left">
             <textarea spellcheck="false"  id="textarealeft" placeholder="Enter JSON to compare, enter an URL to JSON" tabindex="1"
             [innerHTML]="leftTree | json"
@@ -11,7 +11,7 @@
         </div>
   
         <div class="center">
-            <button id="compare" tabindex="3">Compare</button>
+            <button #compare id="compare" tabindex="3">Compare</button>
             <div class="throbber-loader"></div>
             <!-- <br/><br/> -->
             <!-- or try some<br /><a href="#" id="sample">sample data</a> -->
@@ -27,10 +27,11 @@
     </div>
   
     <div class="diffcontainer">
-        <div id="report"></div>
+        <div [hidden]="hideReport" id="report"></div>
         <pre id="out" class="left codeBlock"></pre>
         <pre id="out2" class="right codeBlock"></pre>
         <ul style="display: none;" id="toolbar" class="toolbar"></ul>
+        <div style="display: none;" id="reportData"></div>
     </div>
   </div>
   

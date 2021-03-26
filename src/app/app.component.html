@@ -1,5 +1,7 @@
 <app-json-comparison
   [leftTree]="sampleArray2[0]"
   [rightTree]="sampleArray2[1]"
+  [hideReport]="true"
+  (differenceReport)="differenceReport($event)"
 ></app-json-comparison>
 <button (click)="compare()">Compare</button>

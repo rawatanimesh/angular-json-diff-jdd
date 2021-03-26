@@ -131,4 +131,8 @@ constructor() {}
     document.getElementById('compare').click();
   }
 
+  differenceReport(event){
+    console.log(event);
+  }
+
 }
