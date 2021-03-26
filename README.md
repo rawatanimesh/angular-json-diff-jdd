@@ -16,12 +16,12 @@ Checkout the demo -
 3) Add the following html template in your parent component to get output and input as well as json differences.
 ```
 `
- <app-json-comparison
-   [leftTree]="sampleArray2[0]"
-   [rightTree]="sampleArray2[1]"
-   [hideReport]="true"
-   (differenceReport)="differenceReport($event)">
- </app-json-comparison>
+<app-json-comparison
+ [leftTree]="sampleArray2[0]"
+ [rightTree]="sampleArray2[1]"
+ [hideReport]="true"
+ (differenceReport)="differenceReport($event)">
+</app-json-comparison>
 `
 ```
 4) In your parent component add click on button with id 'compare' to get your results.
