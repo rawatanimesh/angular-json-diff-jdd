@@ -122,6 +122,7 @@ export class AppComponent implements OnInit {
     ]
   }
 ]
+  diffReport: any;
 
 constructor() {}
 
@@ -133,6 +134,7 @@ constructor() {}
 
   differenceReport(event){
     console.log(event);
+    this.diffReport = event;
   }
 
 }

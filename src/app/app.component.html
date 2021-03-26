@@ -1,7 +1,26 @@
+<div style="float: right;">
+  <a href="https://github.com/rawatanimesh/angular-json-diff-jdd">
+    <button>
+      Source Code
+    </button>
+  </a>
+</div>
+<div *ngIf="diffReport">
+  <h3>
+    Difference Report :-
+  </h3>
+  <ul>
+    <li>Total Diff Count : {{diffReport.totalDiffCount}}</li>
+    <li>Missing Properties : {{diffReport.missingProperties}}</li>
+    <li>Unequal Values : {{diffReport.unequalValues}}</li>
+    <li>Incorrect Types : {{diffReport.incorrectTypes}}</li>
+  </ul>
+</div>
 <app-json-comparison
   [leftTree]="sampleArray2[0]"
   [rightTree]="sampleArray2[1]"
+  [hideInitialStep]="true"
   [hideReport]="true"
   (differenceReport)="differenceReport($event)"
 ></app-json-comparison>
-<button (click)="compare()">Compare</button>
+<button *ngIf="!diffReport" (click)="compare()">Compare</button>

@@ -14,6 +14,7 @@ export class JsonComparisonComponent implements OnInit, OnDestroy, AfterViewInit
   @Input() hideReport: boolean = true;
   @Output() differenceReport:EventEmitter<any> = new EventEmitter();
   @ViewChild('compare') elementRef:ElementRef;
+  reportData: any;
   constructor(
     private renderer: Renderer2
     ) { }
@@ -23,15 +24,21 @@ export class JsonComparisonComponent implements OnInit, OnDestroy, AfterViewInit
 
   ngAfterViewInit(){
     this.addDiffFiles();
-    this.renderer.listen(this.elementRef.nativeElement, 'click', () => {
-        setTimeout(()=>{
-        this.emitReportData((document.getElementById('reportData') as HTMLInputElement).innerHTML);
-      },10);
-    });
   }
 
   emitReportData(data){
-    this.differenceReport.emit(JSON.parse(data));
+    if(data){
+      this.reportData = JSON.parse(data)
+    }
+    else{
+      this.reportData = {
+        incorrectTypes: 0,
+        missingProperties: 0,
+        totalDiffCount: 0,
+        unequalValues: 0
+      }
+    }
+    this.differenceReport.emit(this.reportData);
 }
 
   addDiffFiles(){
@@ -48,6 +55,12 @@ export class JsonComparisonComponent implements OnInit, OnDestroy, AfterViewInit
         // console.log('jsl.format.js', test);
         this.addJsToElement('assets/jdd-resources/js-files/jsl.parser.js');
         this.addJsToElement('assets/jdd-resources/js-files/jdd.js');
+
+        this.renderer.listen(this.elementRef.nativeElement, 'click', () => {
+          setTimeout(()=>{
+          this.emitReportData((document.getElementById('reportData') as HTMLInputElement).innerHTML);
+            },10);
+          });
         };
     })
   }
