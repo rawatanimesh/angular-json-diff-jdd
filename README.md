@@ -1,27 +1,36 @@
 # JsonDiffChecker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.2.
+This angualr compoent has been created using source code from  http://www.jsondiff.com/ tool. 
+This is a reusable angular component which helps in showing differences between two JSON objects.
 
-## Development server
+## Demo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Checkout the demo - 
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Adding the component in your project
+```
+1) Add the 'jdd' javascript files in your asset folder. You can copy it ffrom this project from 'assets/jdd-files'.
+2) Copy 'json-comparison' component from here to your project. Import it in your module.
+3) Add the following html template in your parent component to get output and input as well as json differences.
+`
+<app-json-comparison
+  [leftTree]="sampleArray2[0]"
+  [rightTree]="sampleArray2[1]"
+  [hideReport]="true"
+  (differenceReport)="differenceReport($event)">
+</app-json-comparison>
+`
+4) In your parent component add click on button with id 'compare' to get your results.
+`
+<app-json-comparison
+  [leftTree]="sampleArray2[0]"
+  [rightTree]="sampleArray2[1]"
+  [hideReport]="true"
+  (differenceReport)="differenceReport($event)">
+</app-json-comparison>
+`
+5) In your parent component add click on button with id 'compare'
+`
+document.getElementById('compare').click();
+`
+```
