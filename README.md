@@ -11,7 +11,7 @@ Checkout the demo - https://json-difference.web.app/
 
 ## Adding the component in your project
 ```
-1) Add the 'jdd' javascript files in your asset folder. You can copy it ffrom this project from 'assets/jdd-files'.
+1) Add the 'jdd' javascript files in your asset folder. You can copy it from this project from 'assets/jdd-files'.
 2) Copy 'json-comparison' component from here to your project. Import it in your module.
 3) Add the 'app-json-comparison' html template in your parent component to get output and input as well as json differences.
 4) In your parent component add click on button with id 'compare' to get your results.
