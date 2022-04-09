@@ -21,4 +21,5 @@ Checkout the demo - https://json-difference.web.app/
 
 ## Author
 
-animesh.rawat20@gmail.com
+Email - animesh.rawat20@gmail.com \
+Portfolio - https://animesh-rawat.web.app/ 
