@@ -1,0 +1,51 @@
+body {
+  background-color: rgb(177, 122, 50);
+}
+.app-container {
+  &-header {
+    &-text {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  &-body {
+    padding: 1em;
+    &-github {
+      display: flex;
+      justify-content: end;
+    }
+    &-diffCard {
+      background-color: #fff6f9;
+    }
+    &-diffCount {
+      padding: 0.2em;
+      display: flex;
+      justify-content: space-between;
+      &-box {
+        display: flex;
+        justify-content: space-between;
+        &-label {
+        }
+        &-count {
+          font-weight: bold;
+        }
+      }
+    }
+    &-comparison {
+      padding: 1em 0;
+    }
+  }
+}
+
+.missing {
+  background: rgba(0, 160, 80, 0.1);
+  color: green;
+}
+.unequal {
+  background: rgba(50, 57, 88, 0.1);
+  color: #333;
+}
+.incorrect {
+  background: rgba(220, 100, 100, 0.1);
+  color: #c00;
+}

@@ -1,26 +1,102 @@
-<div style="float: right;">
+<div class="app-container">
+  <!-- header  -->
+  <div class="app-container-header">
+    <mat-toolbar color="primary">
+      <div class="app-container-header-text">
+        <span>Angular JSON Difference Checker </span>
+      </div>
+    </mat-toolbar>
+  </div>
+
+  <!-- body  -->
+  <div class="app-container-body">
+    <div class="app-container-body-github">
+      <button
+        mat-button
+        onClick="window.open('https://github.com/rawatanimesh/angular-json-diff-jdd')"
+      >
+        View on Github
+        <mat-icon>open_in_new</mat-icon>
+      </button>
+    </div>
+
+    <!-- <div>
+      <button
+        *ngIf="!diffReport"
+        mat-raised-button
+        color="primary"
+        (click)="compare()"
+      >
+        Click to get comparison
+      </button>
+    </div> -->
+
+    <mat-card *ngIf="diffReport" class="app-container-body-diffCard">
+      <mat-card-title>Difference Breakdown</mat-card-title>
+      <mat-card-subtitle class="app-container-body-diffCard-subtitle"
+        >A detailed report of changes between the two JSON</mat-card-subtitle
+      >
+      <div class="app-container-body-diffCount">
+        <div class="app-container-body-diffCount-box">
+          <div class="app-container-body-diffCount-box-label">
+            Total Difference Count : &nbsp;
+          </div>
+          <div class="app-container-body-diffCount-box-count">
+            {{ diffReport.totalDiffCount }}
+          </div>
+        </div>
+        <div class="app-container-body-diffCount-box missing">
+          <div class="app-container-body-diffCount-box-label">
+            Missing Properties : &nbsp;
+          </div>
+          <div class="app-container-body-diffCount-box-count">
+            {{ diffReport.missingProperties }}
+          </div>
+        </div>
+        <div class="app-container-body-diffCount-box unequal">
+          <div class="app-container-body-diffCount-box-label">
+            Unequal Values : &nbsp;
+          </div>
+          <div class="app-container-body-diffCount-box-count">
+            {{ diffReport.unequalValues }}
+          </div>
+        </div>
+        <div class="app-container-body-diffCount-box incorrect">
+          <div class="app-container-body-diffCount-box-label">
+            Incorrect Types : &nbsp;
+          </div>
+          <div class="app-container-body-diffCount-box-count">
+            {{ diffReport.incorrectTypes }}
+          </div>
+        </div>
+      </div>
+    </mat-card>
+
+    <div class="app-container-body-comparison">
+      <app-json-comparison
+        [leftTree]="sampleArray2[0]"
+        [rightTree]="sampleArray2[1]"
+        [hideInitialStep]="true"
+        [hideReport]="true"
+        (differenceReport)="differenceReport($event)"
+      ></app-json-comparison>
+    </div>
+  </div>
+</div>
+
+<!-- <div style="float: right">
   <a href="https://github.com/rawatanimesh/angular-json-diff-jdd">
-    <button>
-      Source Code
-    </button>
+    <button>Source Code</button>
   </a>
-</div>
-<div *ngIf="diffReport">
-  <h3>
-    Difference Report :-
-  </h3>
+</div> -->
+<!-- <div *ngIf="diffReport">
+  <h3>Difference Report :-</h3>
   <ul>
-    <li>Total Diff Count : {{diffReport.totalDiffCount}}</li>
-    <li>Missing Properties : {{diffReport.missingProperties}}</li>
-    <li>Unequal Values : {{diffReport.unequalValues}}</li>
-    <li>Incorrect Types : {{diffReport.incorrectTypes}}</li>
+    <li>Total Diff Count : {{ diffReport.totalDiffCount }}</li>
+    <li>Missing Properties : {{ diffReport.missingProperties }}</li>
+    <li>Unequal Values : {{ diffReport.unequalValues }}</li>
+    <li>Incorrect Types : {{ diffReport.incorrectTypes }}</li>
   </ul>
-</div>
-<app-json-comparison
-  [leftTree]="sampleArray2[0]"
-  [rightTree]="sampleArray2[1]"
-  [hideInitialStep]="true"
-  [hideReport]="true"
-  (differenceReport)="differenceReport($event)"
-></app-json-comparison>
-<button *ngIf="!diffReport" (click)="compare()">Compare</button>
+</div> -->
+
+<!-- <button *ngIf="!diffReport" (click)="compare()">Compare</button> -->
