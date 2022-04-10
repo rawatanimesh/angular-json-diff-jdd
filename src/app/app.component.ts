@@ -122,9 +122,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     // the asset files of library take time to be loaded on browser,
     // hence timeout is used for demo purpose here
-    setTimeout(() => {
-      this.compare();
-    }, 200);
+    // setTimeout(() => {
+    //   this.compare();
+    // }, 200);
   }
 
   compare() {
