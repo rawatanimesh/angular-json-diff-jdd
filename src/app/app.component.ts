@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { browser } from 'protractor';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -117,7 +117,7 @@ export class AppComponent implements OnInit {
   ];
   diffReport: any;
 
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
     // the asset files of library take time to be loaded on browser,

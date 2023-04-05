@@ -15,7 +15,7 @@
  * limitations under the License.
  *
  ******************************************************************************/
-'use strict';
+"use strict";
 // utilites
 //
 /**
@@ -58,12 +58,12 @@ function forEach(array, callback, scope) {
  */
 /*global jdd:true */
 var jdd = {
-  LEFT: 'left',
-  RIGHT: 'right',
+  LEFT: "left",
+  RIGHT: "right",
 
-  EQUALITY: 'eq',
-  TYPE: 'type',
-  MISSING: 'missing',
+  EQUALITY: "eq",
+  TYPE: "type",
+  MISSING: "missing",
   diffs: [],
   requestCount: 0,
   config1Length: 0,
@@ -86,8 +86,8 @@ var jdd = {
     /*Object*/ config2,
     /*Object*/ data2
   ) {
-    config1.currentPath.push('/');
-    config2.currentPath.push('/');
+    config1.currentPath.push("/");
+    config2.currentPath.push("/");
 
     var key;
     // no un-used vars
@@ -108,8 +108,8 @@ var jdd = {
                 config1,
                 jdd.generatePath(config1),
                 config2,
-                jdd.generatePath(config2, '/' + key),
-                'The right side of this object has more items than the left side',
+                jdd.generatePath(config2, "/" + key),
+                "The right side of this object has more items than the left side",
                 jdd.MISSING
               )
             );
@@ -140,9 +140,9 @@ var jdd = {
               jdd.generatePath(config1),
               config2,
               jdd.generatePath(config2),
-              'Missing property <code>' +
+              "Missing property <code>" +
                 key +
-                '</code> from the object on the right side',
+                "</code> from the object on the right side",
               jdd.MISSING
             )
           );
@@ -175,9 +175,9 @@ var jdd = {
               jdd.generatePath(config1),
               config2,
               jdd.generatePath(config2, key),
-              'Missing property <code>' +
+              "Missing property <code>" +
                 key +
-                '</code> from the object on the left side',
+                "</code> from the object on the left side",
               jdd.MISSING
             )
           );
@@ -192,11 +192,11 @@ var jdd = {
    * types and actual values.
    */
   diffVal: function (val1, config1, val2, config2) {
-    if (getType(val1) === 'array') {
+    if (getType(val1) === "array") {
       jdd.diffArray(val1, config1, val2, config2);
-    } else if (getType(val1) === 'object') {
+    } else if (getType(val1) === "object") {
       if (
-        ['array', 'string', 'number', 'boolean', 'null'].indexOf(
+        ["array", "string", "number", "boolean", "null"].indexOf(
           getType(val2)
         ) > -1
       ) {
@@ -206,22 +206,22 @@ var jdd = {
             jdd.generatePath(config1),
             config2,
             jdd.generatePath(config2),
-            'Both types should be objects',
+            "Both types should be objects",
             jdd.TYPE
           )
         );
       } else {
         jdd.findDiffs(config1, val1, config2, val2);
       }
-    } else if (getType(val1) === 'string') {
-      if (getType(val2) !== 'string') {
+    } else if (getType(val1) === "string") {
+      if (getType(val2) !== "string") {
         jdd.diffs.push(
           jdd.generateDiff(
             config1,
             jdd.generatePath(config1),
             config2,
             jdd.generatePath(config2),
-            'Both types should be strings',
+            "Both types should be strings",
             jdd.TYPE
           )
         );
@@ -232,20 +232,20 @@ var jdd = {
             jdd.generatePath(config1),
             config2,
             jdd.generatePath(config2),
-            'Both sides should be equal strings',
+            "Both sides should be equal strings",
             jdd.EQUALITY
           )
         );
       }
-    } else if (getType(val1) === 'number') {
-      if (getType(val2) !== 'number') {
+    } else if (getType(val1) === "number") {
+      if (getType(val2) !== "number") {
         jdd.diffs.push(
           jdd.generateDiff(
             config1,
             jdd.generatePath(config1),
             config2,
             jdd.generatePath(config2),
-            'Both types should be numbers',
+            "Both types should be numbers",
             jdd.TYPE
           )
         );
@@ -256,21 +256,21 @@ var jdd = {
             jdd.generatePath(config1),
             config2,
             jdd.generatePath(config2),
-            'Both sides should be equal numbers',
+            "Both sides should be equal numbers",
             jdd.EQUALITY
           )
         );
       }
-    } else if (getType(val1) === 'boolean') {
+    } else if (getType(val1) === "boolean") {
       jdd.diffBool(val1, config1, val2, config2);
-    } else if (getType(val1) === 'null' && getType(val2) !== 'null') {
+    } else if (getType(val1) === "null" && getType(val2) !== "null") {
       jdd.diffs.push(
         jdd.generateDiff(
           config1,
           jdd.generatePath(config1),
           config2,
           jdd.generatePath(config2),
-          'Both types should be nulls',
+          "Both types should be nulls",
           jdd.TYPE
         )
       );
@@ -282,14 +282,14 @@ var jdd = {
    * issues so we handle them specially in this function.
    */
   diffArray: function (val1, config1, val2, config2) {
-    if (getType(val2) !== 'array') {
+    if (getType(val2) !== "array") {
       jdd.diffs.push(
         jdd.generateDiff(
           config1,
           jdd.generatePath(config1),
           config2,
           jdd.generatePath(config2),
-          'Both types should be arrays',
+          "Both types should be arrays",
           jdd.TYPE
         )
       );
@@ -307,10 +307,10 @@ var jdd = {
             config1,
             jdd.generatePath(config1),
             config2,
-            jdd.generatePath(config2, '[' + i + ']'),
-            'Missing element <code>' +
+            jdd.generatePath(config2, "[" + i + "]"),
+            "Missing element <code>" +
               i +
-              '</code> from the array on the left side',
+              "</code> from the array on the left side",
             jdd.MISSING
           )
         );
@@ -321,20 +321,20 @@ var jdd = {
         jdd.diffs.push(
           jdd.generateDiff(
             config1,
-            jdd.generatePath(config1, '[' + index + ']'),
+            jdd.generatePath(config1, "[" + index + "]"),
             config2,
             jdd.generatePath(config2),
-            'Missing element <code>' +
+            "Missing element <code>" +
               index +
-              '</code> from the array on the right side',
+              "</code> from the array on the right side",
             jdd.MISSING
           )
         );
       } else {
-        config1.currentPath.push('/[' + index + ']');
-        config2.currentPath.push('/[' + index + ']');
+        config1.currentPath.push("/[" + index + "]");
+        config2.currentPath.push("/[" + index + "]");
 
-        if (getType(val2) === 'array') {
+        if (getType(val2) === "array") {
           /*
            * If both sides are arrays then we want to diff them.
            */
@@ -350,14 +350,14 @@ var jdd = {
    * We handle boolean values specially because we can show a nicer message for them.
    */
   diffBool: function (val1, config1, val2, config2) {
-    if (getType(val2) !== 'boolean') {
+    if (getType(val2) !== "boolean") {
       jdd.diffs.push(
         jdd.generateDiff(
           config1,
           jdd.generatePath(config1),
           config2,
           jdd.generatePath(config2),
-          'Both types should be booleans',
+          "Both types should be booleans",
           jdd.TYPE
         )
       );
@@ -369,7 +369,7 @@ var jdd = {
             jdd.generatePath(config1),
             config2,
             jdd.generatePath(config2),
-            'The left side is <code>true</code> and the right side is <code>false</code>',
+            "The left side is <code>true</code> and the right side is <code>false</code>",
             jdd.EQUALITY
           )
         );
@@ -380,7 +380,7 @@ var jdd = {
             jdd.generatePath(config1),
             config2,
             jdd.generatePath(config2),
-            'The left side is <code>false</code> and the right side is <code>true</code>',
+            "The left side is <code>false</code> and the right side is <code>true</code>",
             jdd.EQUALITY
           )
         );
@@ -393,13 +393,13 @@ var jdd = {
    * the data about this object.
    */
   formatAndDecorate: function (/*Object*/ config, /*Object*/ data) {
-    if (getType(data) === 'array') {
+    if (getType(data) === "array") {
       jdd.formatAndDecorateArray(config, data);
       return;
     }
 
     jdd.startObject(config);
-    config.currentPath.push('/');
+    config.currentPath.push("/");
 
     var props = jdd.getSortedProperties(data);
 
@@ -443,11 +443,11 @@ var jdd = {
     data.forEach(function (arrayVal, index) {
       config.out += jdd.newLine(config) + jdd.getTabs(config.indent);
       config.paths.push({
-        path: jdd.generatePath(config, '[' + index + ']'),
+        path: jdd.generatePath(config, "[" + index + "]"),
         line: config.line,
       });
 
-      config.currentPath.push('/[' + index + ']');
+      config.currentPath.push("/[" + index + "]");
       jdd.formatVal(arrayVal, config);
       config.currentPath.pop();
     });
@@ -461,7 +461,7 @@ var jdd = {
    */
   startArray: function (config) {
     config.indent++;
-    config.out += '[';
+    config.out += "[";
 
     if (config.paths.length === 0) {
       /*
@@ -490,9 +490,9 @@ var jdd = {
     jdd.removeTrailingComma(config);
 
     config.indent--;
-    config.out += jdd.newLine(config) + jdd.getTabs(config.indent) + ']';
+    config.out += jdd.newLine(config) + jdd.getTabs(config.indent) + "]";
     if (config.indent !== 0) {
-      config.out += ',';
+      config.out += ",";
     } else {
       config.out += jdd.newLine(config);
     }
@@ -503,7 +503,7 @@ var jdd = {
    */
   startObject: function (config) {
     config.indent++;
-    config.out += '{';
+    config.out += "{";
 
     if (config.paths.length === 0) {
       /*
@@ -532,9 +532,9 @@ var jdd = {
     jdd.removeTrailingComma(config);
 
     config.indent--;
-    config.out += jdd.newLine(config) + jdd.getTabs(config.indent) + '}';
+    config.out += jdd.newLine(config) + jdd.getTabs(config.indent) + "}";
     if (config.indent !== 0) {
-      config.out += ',';
+      config.out += ",";
     } else {
       config.out += jdd.newLine(config);
     }
@@ -544,18 +544,18 @@ var jdd = {
    * Format a specific value into the output stream.
    */
   formatVal: function (val, config) {
-    if (getType(val) === 'array') {
-      config.out += '[';
+    if (getType(val) === "array") {
+      config.out += "[";
 
       config.indent++;
       val.forEach(function (arrayVal, index) {
         config.out += jdd.newLine(config) + jdd.getTabs(config.indent);
         config.paths.push({
-          path: jdd.generatePath(config, '[' + index + ']'),
+          path: jdd.generatePath(config, "[" + index + "]"),
           line: config.line,
         });
 
-        config.currentPath.push('/[' + index + ']');
+        config.currentPath.push("/[" + index + "]");
         jdd.formatVal(arrayVal, config);
         config.currentPath.pop();
       });
@@ -563,17 +563,17 @@ var jdd = {
       config.indent--;
 
       config.out +=
-        jdd.newLine(config) + jdd.getTabs(config.indent) + ']' + ',';
-    } else if (getType(val) === 'object') {
+        jdd.newLine(config) + jdd.getTabs(config.indent) + "]" + ",";
+    } else if (getType(val) === "object") {
       jdd.formatAndDecorate(config, val);
-    } else if (getType(val) === 'string') {
+    } else if (getType(val) === "string") {
       config.out += '"' + jdd.unescapeString(val) + '",';
-    } else if (getType(val) === 'number') {
-      config.out += val + ',';
-    } else if (getType(val) === 'boolean') {
-      config.out += val + ',';
-    } else if (getType(val) === 'null') {
-      config.out += 'null,';
+    } else if (getType(val) === "number") {
+      config.out += val + ",";
+    } else if (getType(val) === "boolean") {
+      config.out += val + ",";
+    } else if (getType(val) === "null") {
+      config.out += "null,";
     }
   },
 
@@ -592,13 +592,13 @@ var jdd = {
   unescapeString: function (val) {
     if (val) {
       return val
-        .replace('\\', '\\\\') // Single slashes need to be replaced first
+        .replace("\\", "\\\\") // Single slashes need to be replaced first
         .replace(/\"/g, '\\"') // Then double quotes
-        .replace(/\n/g, '\\n') // New lines
-        .replace('\b', '\\b') // Backspace
-        .replace(/\f/g, '\\f') // Formfeed
-        .replace(/\r/g, '\\r') // Carriage return
-        .replace(/\t/g, '\\t'); // Horizontal tabs
+        .replace(/\n/g, "\\n") // New lines
+        .replace("\b", "\\b") // Backspace
+        .replace(/\f/g, "\\f") // Formfeed
+        .replace(/\r/g, "\\r") // Carriage return
+        .replace(/\t/g, "\\t"); // Horizontal tabs
     } else {
       return val;
     }
@@ -608,17 +608,17 @@ var jdd = {
    * Generate a JSON path based on the specific configuration and an optional property.
    */
   generatePath: function (config, prop) {
-    var s = '';
+    var s = "";
     config.currentPath.forEach(function (path) {
       s += path;
     });
 
     if (prop) {
-      s += '/' + prop;
+      s += "/" + prop;
     }
 
     if (s.length === 0) {
-      return '/';
+      return "/";
     } else {
       return s;
     }
@@ -629,7 +629,7 @@ var jdd = {
    */
   newLine: function (config) {
     config.line++;
-    return '\n';
+    return "\n";
   },
 
   /**
@@ -662,11 +662,11 @@ var jdd = {
     /*String*/ msg,
     type
   ) {
-    if (path1 !== '/' && path1.charAt(path1.length - 1) === '/') {
+    if (path1 !== "/" && path1.charAt(path1.length - 1) === "/") {
       path1 = path1.substring(0, path1.length - 1);
     }
 
-    if (path2 !== '/' && path2.charAt(path2.length - 1) === '/') {
+    if (path2 !== "/" && path2.charAt(path2.length - 1) === "/") {
       path2 = path2.substring(0, path2.length - 1);
     }
     var pathObj1 = config1.paths.find(function (path) {
@@ -677,11 +677,11 @@ var jdd = {
     });
 
     if (!pathObj1) {
-      throw 'Unable to find line number for (' + msg + '): ' + path1;
+      throw "Unable to find line number for (" + msg + "): " + path1;
     }
 
     if (!pathObj2) {
-      throw 'Unable to find line number for (' + msg + '): ' + path2;
+      throw "Unable to find line number for (" + msg + "): " + path2;
     }
 
     return {
@@ -696,9 +696,9 @@ var jdd = {
    * Get the current indent level
    */
   getTabs: function (/*int*/ indent) {
-    var s = '';
+    var s = "";
     for (var i = 0; i < indent; i++) {
-      s += '    ';
+      s += "    ";
     }
 
     return s;
@@ -711,7 +711,7 @@ var jdd = {
     /*
      * Remove the trailing comma
      */
-    if (config.out.charAt(config.out.length - 1) === ',') {
+    if (config.out.charAt(config.out.length - 1) === ",") {
       config.out = config.out.substring(0, config.out.length - 1);
     }
   },
@@ -721,7 +721,7 @@ var jdd = {
    */
   createConfig: function () {
     return {
-      out: '',
+      out: "",
       indent: -1,
       currentPath: [],
       paths: [],
@@ -733,14 +733,14 @@ var jdd = {
    * Format the output pre tags.
    */
   formatPRETags: function () {
-    forEach($('pre'), function (pre) {
+    forEach($("pre"), function (pre) {
       var linesLength = 0;
-      console.log('formatPRETags :', pre);
+      console.log("formatPRETags :", pre);
       var codeBlock = $('<pre class="codeBlock"></pre>');
       var lineNumbers = $('<div class="gutter"></div>');
       codeBlock.append(lineNumbers);
 
-      var codeLines = $('<div></div>');
+      var codeLines = $("<div></div>");
       codeBlock.append(codeLines);
 
       var addLine = function (line, index) {
@@ -751,7 +751,7 @@ var jdd = {
               : index;
           var div = $('<div class="codeLine line' + (index + 1) + '"></div>');
           lineNumbers.append(
-            $('<span class="line-number">' + (index + 1) + '.</span>')
+            $('<span class="line-number">' + (index + 1) + ".</span>")
           );
 
           var span = $('<span class="code"></span');
@@ -763,13 +763,13 @@ var jdd = {
         }
       };
 
-      var lines = $(pre).text().split('\n');
+      var lines = $(pre).text().split("\n");
       linesLength = lines.length;
       // console.log('lines :', lines.length);
       lines.forEach(addLine);
 
-      codeBlock.addClass($(pre).attr('class'));
-      codeBlock.attr('id', $(pre).attr('id'));
+      codeBlock.addClass($(pre).attr("class"));
+      codeBlock.attr("id", $(pre).attr("id"));
 
       $(pre).replaceWith(codeBlock);
     });
@@ -779,18 +779,18 @@ var jdd = {
    * Format the text edits which handle the JSON input
    */
   formatTextAreas: function () {
-    forEach($('textarea'), function (textarea) {
+    forEach($("textarea"), function (textarea) {
       var codeBlock = $('<div class="codeBlock"></div>');
       var lineNumbers = $('<div class="gutter"></div>');
       codeBlock.append(lineNumbers);
 
       var addLine = function (line, index) {
         lineNumbers.append(
-          $('<span class="line-number">' + (index + 1) + '.</span>')
+          $('<span class="line-number">' + (index + 1) + ".</span>")
         );
       };
 
-      var lines = $(textarea).val().split('\n');
+      var lines = $(textarea).val().split("\n");
       lines.forEach(addLine);
 
       $(textarea).replaceWith(codeBlock);
@@ -809,9 +809,9 @@ var jdd = {
       }
     });
 
-    $('pre.left span.code').removeClass('selected');
-    $('pre.right span.code').removeClass('selected');
-    $('ul.toolbar').text('');
+    $("pre.left span.code").removeClass("selected");
+    $("pre.right span.code").removeClass("selected");
+    $("ul.toolbar").text("");
     diffs.forEach(function (diff) {
       // $('pre.left div.line' + diff.path1.line + ' span.code').addClass(
       //   'selected'
@@ -837,7 +837,7 @@ var jdd = {
     var prev = $(
       '<a href="#" title="Previous difference" id="prevButton">&lt;</a>'
     );
-    prev.addClass('disabled');
+    prev.addClass("disabled");
     prev.click(function (e) {
       e.preventDefault();
       jdd.highlightPrevDiff();
@@ -855,7 +855,7 @@ var jdd = {
     });
     buttons.append(next);
 
-    $('ul.toolbar').append(buttons);
+    $("ul.toolbar").append(buttons);
     jdd.updateButtonStyles();
 
     jdd.showDiffDetails(diffs);
@@ -882,15 +882,15 @@ var jdd = {
   },
 
   updateButtonStyles: function () {
-    $('#prevButton').removeClass('disabled');
-    $('#nextButton').removeClass('disabled');
+    $("#prevButton").removeClass("disabled");
+    $("#nextButton").removeClass("disabled");
 
-    $('#prevNextLabel').text(jdd.currentDiff + 1 + ' of ' + jdd.diffs.length);
+    $("#prevNextLabel").text(jdd.currentDiff + 1 + " of " + jdd.diffs.length);
 
     if (jdd.currentDiff === 1) {
-      $('#prevButton').addClass('disabled');
+      $("#prevButton").addClass("disabled");
     } else if (jdd.currentDiff === jdd.diffs.length - 1) {
-      $('#nextButton').addClass('disabled');
+      $("#nextButton").addClass("disabled");
     }
   },
 
@@ -906,9 +906,9 @@ var jdd = {
    */
   showDiffDetails: function (diffs) {
     diffs.forEach(function (diff) {
-      var li = $('<li></li>');
+      var li = $("<li></li>");
       li.html(diff.msg);
-      $('ul.toolbar').append(li);
+      $("ul.toolbar").append(li);
 
       li.click(function () {
         jdd.scrollToDiff(diff);
@@ -920,10 +920,10 @@ var jdd = {
    * Scroll the specified diff to be visible
    */
   scrollToDiff: function (diff) {
-    $('html, body').animate(
+    $("html, body").animate(
       {
         scrollTop: $(
-          'pre.left div.line' + diff.path1.line + ' span.code'
+          "pre.left div.line" + diff.path1.line + " span.code"
         ).offset().top,
       },
       0
@@ -937,11 +937,11 @@ var jdd = {
     var left = [];
     var right = [];
     jdd.diffs.forEach(function (diff) {
-      $('pre.left div.line' + diff.path1.line + ' span.code')
+      $("pre.left div.line" + diff.path1.line + " span.code")
         .addClass(diff.type)
-        .addClass('diff');
+        .addClass("diff");
       if (left.indexOf(diff.path1.line) === -1) {
-        $('pre.left div.line' + diff.path1.line + ' span.code').click(
+        $("pre.left div.line" + diff.path1.line + " span.code").click(
           function () {
             jdd.handleDiffClick(diff.path1.line, jdd.LEFT);
           }
@@ -949,11 +949,11 @@ var jdd = {
         left.push(diff.path1.line);
       }
 
-      $('pre.right div.line' + diff.path2.line + ' span.code')
+      $("pre.right div.line" + diff.path2.line + " span.code")
         .addClass(diff.type)
-        .addClass('diff');
+        .addClass("diff");
       if (right.indexOf(diff.path2.line) === -1) {
-        $('pre.right div.line' + diff.path2.line + ' span.code').click(
+        $("pre.right div.line" + diff.path2.line + " span.code").click(
           function () {
             jdd.handleDiffClick(diff.path2.line, jdd.RIGHT);
           }
@@ -975,21 +975,21 @@ var jdd = {
       jsl.parser.parse(json);
 
       if (side === jdd.LEFT) {
-        $('#errorLeft').text('').hide();
-        $('#textarealeft').removeClass('error');
+        $("#errorLeft").text("").hide();
+        $("#textarealeft").removeClass("error");
       } else {
-        $('#errorRight').text('').hide();
-        $('#textarearight').removeClass('error');
+        $("#errorRight").text("").hide();
+        $("#textarearight").removeClass("error");
       }
 
       return true;
     } catch (parseException) {
       if (side === jdd.LEFT) {
-        $('#errorLeft').text(parseException.message).show();
-        $('#textarealeft').addClass('error');
+        $("#errorLeft").text(parseException.message).show();
+        $("#textarealeft").addClass("error");
       } else {
-        $('#errorRight').text(parseException.message).show();
-        $('#textarearight').addClass('error');
+        $("#errorRight").text(parseException.message).show();
+        $("#textarearight").addClass("error");
       }
       return false;
     }
@@ -1004,9 +1004,9 @@ var jdd = {
     reader.onload = (function () {
       return function (e) {
         if (side === jdd.LEFT) {
-          $('#textarealeft').val(e.target.result);
+          $("#textarealeft").val(e.target.result);
         } else {
-          $('#textarearight').val(e.target.result);
+          $("#textarearight").val(e.target.result);
         }
       };
     })(files[0]);
@@ -1015,28 +1015,28 @@ var jdd = {
   },
 
   setupNewDiff: function () {
-    $('div.initContainer').show();
-    $('div.diffcontainer').hide();
-    $('div.diffcontainer pre').text('');
-    $('ul.toolbar').text('');
+    $("div.initContainer").show();
+    $("div.diffcontainer").hide();
+    $("div.diffcontainer pre").text("");
+    $("ul.toolbar").text("");
   },
 
   /**
    * Generate the report section with the diff
    */
   generateReport: function () {
-    var report = $('#report');
+    var report = $("#report");
 
-    report.text('');
+    report.text("");
 
-    var newDiff = $('<button>Perform a new diff</button>');
+    var newDiff = $("<button>Perform a new diff</button>");
     report.append(newDiff);
     newDiff.click(function () {
       jdd.setupNewDiff();
     });
 
     if (jdd.diffs.length === 0) {
-      report.append('<span>The two files were semantically  identical.</span>');
+      report.append("<span>The two files were semantically  identical.</span>");
       return;
     }
 
@@ -1055,9 +1055,9 @@ var jdd = {
 
     var title = $('<div class="reportTitle"></div>');
     if (jdd.diffs.length === 1) {
-      title.text('Found ' + jdd.diffs.length + ' difference');
+      title.text("Found " + jdd.diffs.length + " difference");
     } else {
-      title.text('Found ' + jdd.diffs.length + ' differences');
+      title.text("Found " + jdd.diffs.length + " differences");
     }
 
     report.prepend(title);
@@ -1072,19 +1072,19 @@ var jdd = {
         '<label><input id="showMissing" type="checkbox" name="checkbox" value="value" checked="true"></label>'
       );
       if (missingCount === 1) {
-        missing.append(missingCount + ' missing property');
+        missing.append(missingCount + " missing property");
       } else {
-        missing.append(missingCount + ' missing properties');
+        missing.append(missingCount + " missing properties");
       }
-      missing.children('input').click(function () {
-        if (!$(this).prop('checked')) {
-          $('span.code.diff.missing')
-            .addClass('missing_off')
-            .removeClass('missing');
+      missing.children("input").click(function () {
+        if (!$(this).prop("checked")) {
+          $("span.code.diff.missing")
+            .addClass("missing_off")
+            .removeClass("missing");
         } else {
-          $('span.code.diff.missing_off')
-            .addClass('missing')
-            .removeClass('missing_off');
+          $("span.code.diff.missing_off")
+            .addClass("missing")
+            .removeClass("missing_off");
         }
       });
       filterBlock.append(missing);
@@ -1098,16 +1098,16 @@ var jdd = {
         '<label><input id="showTypes" type="checkbox" name="checkbox" value="value" checked="true"></label>'
       );
       if (typeCount === 1) {
-        types.append(typeCount + ' incorrect type');
+        types.append(typeCount + " incorrect type");
       } else {
-        types.append(typeCount + ' incorrect types');
+        types.append(typeCount + " incorrect types");
       }
 
-      types.children('input').click(function () {
-        if (!$(this).prop('checked')) {
-          $('span.code.diff.type').addClass('type_off').removeClass('type');
+      types.children("input").click(function () {
+        if (!$(this).prop("checked")) {
+          $("span.code.diff.type").addClass("type_off").removeClass("type");
         } else {
-          $('span.code.diff.type_off').addClass('type').removeClass('type_off');
+          $("span.code.diff.type_off").addClass("type").removeClass("type_off");
         }
       });
       filterBlock.append(types);
@@ -1121,15 +1121,15 @@ var jdd = {
         '<label><input id="showEq" type="checkbox" name="checkbox" value="value" checked="true"></label>'
       );
       if (eqCount === 1) {
-        eq.append(eqCount + ' unequal value');
+        eq.append(eqCount + " unequal value");
       } else {
-        eq.append(eqCount + ' unequal values');
+        eq.append(eqCount + " unequal values");
       }
-      eq.children('input').click(function () {
-        if (!$(this).prop('checked')) {
-          $('span.code.diff.eq').addClass('eq_off').removeClass('eq');
+      eq.children("input").click(function () {
+        if (!$(this).prop("checked")) {
+          $("span.code.diff.eq").addClass("eq_off").removeClass("eq");
         } else {
-          $('span.code.diff.eq_off').addClass('eq').removeClass('eq_off');
+          $("span.code.diff.eq_off").addClass("eq").removeClass("eq_off");
         }
       });
       filterBlock.append(eq);
@@ -1142,13 +1142,12 @@ var jdd = {
       unequalValues: eqCount,
       missingProperties: missingCount,
     };
-    document.getElementById('reportData').innerHTML = JSON.stringify(
-      reportData
-    );
+    document.getElementById("reportData").innerHTML =
+      JSON.stringify(reportData);
     // console.log(jdd);
   },
   chunkString: function (str, len) {
-    var dataJSOn = str.split('\n');
+    var dataJSOn = str.split("\n");
     var size = Math.ceil(dataJSOn.length / len);
     //  console.log("size :",size);
     //dataJSOn.slice(100,160)
@@ -1188,40 +1187,40 @@ var jdd = {
       return;
     }
 
-    $('body').addClass('progress');
-    $('#compare').prop('disabled', true);
+    $("body").addClass("progress");
+    $("#compare").prop("disabled", true);
 
     var loadUrl = function (id, errId) {
       if (
-        $('#' + id)
+        $("#" + id)
           .val()
           .trim()
           .substring(0, 4)
-          .toLowerCase() === 'http'
+          .toLowerCase() === "http"
       ) {
         jdd.requestCount++;
         $.post(
-          'proxy.php',
+          "proxy.php",
           {
-            url: $('#' + id)
+            url: $("#" + id)
               .val()
               .trim(),
           },
           function (responseObj) {
             if (responseObj.error) {
-              $('#' + errId)
+              $("#" + errId)
                 .text(responseObj.result)
                 .show();
-              $('#' + id).addClass('error');
-              $('body').removeClass('progress');
-              $('#compare').prop('disabled', false);
+              $("#" + id).addClass("error");
+              $("body").removeClass("progress");
+              $("#compare").prop("disabled", false);
             } else {
-              $('#' + id).val(responseObj.content);
+              $("#" + id).val(responseObj.content);
               jdd.requestCount--;
               jdd.compare();
             }
           },
-          'json'
+          "json"
         );
         return true;
       } else {
@@ -1229,11 +1228,11 @@ var jdd = {
       }
     };
 
-    if (loadUrl('textarealeft', 'errorLeft')) {
+    if (loadUrl("textarealeft", "errorLeft")) {
       return;
     }
 
-    if (loadUrl('textarearight', 'errorRight')) {
+    if (loadUrl("textarearight", "errorRight")) {
       return;
     }
 
@@ -1241,22 +1240,22 @@ var jdd = {
      * We'll start by running the text through JSONlint since it gives
      * much better error messages.
      */
-    var leftValid = jdd.validateInput($('#textarealeft').val(), jdd.LEFT);
-    var rightValid = jdd.validateInput($('#textarearight').val(), jdd.RIGHT);
+    var leftValid = jdd.validateInput($("#textarealeft").val(), jdd.LEFT);
+    var rightValid = jdd.validateInput($("#textarearight").val(), jdd.RIGHT);
 
     if (!leftValid || !rightValid) {
-      $('body').removeClass('progress');
-      $('#compare').prop('disabled', false);
+      $("body").removeClass("progress");
+      $("#compare").prop("disabled", false);
       return;
     }
 
-    $('div.initContainer').hide();
-    $('div.diffcontainer').show();
+    $("div.initContainer").hide();
+    $("div.diffcontainer").show();
 
     jdd.diffs = [];
 
-    var left = JSON.parse($('#textarealeft').val());
-    var right = JSON.parse($('#textarearight').val());
+    var left = JSON.parse($("#textarealeft").val());
+    var right = JSON.parse($("#textarearight").val());
     jdd.leftJSON = left;
     jdd.rightJSON = right;
 
@@ -1264,13 +1263,13 @@ var jdd = {
     jdd.formatAndDecorate(config, left);
     //console.log('Compare config 1:', config.out);
     jdd.config1List = jdd.chunkString(config.out, jdd.preNumberOfLines);
-    $('#out').text(jdd.config1List[0].join('\r\n').toString());
+    $("#out").text(jdd.config1List[0].join("\r\n").toString());
 
     var config2 = jdd.createConfig();
     jdd.formatAndDecorate(config2, right);
     //console.log('Compare config 2:', config2.out);
     jdd.config2List = jdd.chunkString(config2.out, jdd.preNumberOfLines);
-    $('#out2').text(jdd.config2List[0].join('\r\n').toString());
+    $("#out2").text(jdd.config2List[0].join("\r\n").toString());
 
     jdd.formatPRETags();
 
@@ -1287,19 +1286,19 @@ var jdd = {
       jdd.updateButtonStyles();
     }
 
-    $('body').removeClass('progress');
-    $('#compare').prop('disabled', false);
+    $("body").removeClass("progress");
+    $("#compare").prop("disabled", false);
 
     /*
      * We want to switch the toolbar bar between fixed and absolute position when you
      * scroll so you can get the maximum number of toolbar items.
      */
-    var toolbarTop = $('#toolbar').offset().top - 15;
+    var toolbarTop = $("#toolbar").offset().top - 15;
     $(window).scroll(function () {
       if (toolbarTop < $(window).scrollTop()) {
-        $('#toolbar').css('position', 'fixed').css('top', '10px');
+        $("#toolbar").css("position", "fixed").css("top", "10px");
       } else {
-        $('#toolbar').css('position', 'absolute').css('top', '');
+        $("#toolbar").css("position", "absolute").css("top", "");
       }
     });
   },
@@ -1310,7 +1309,7 @@ var jdd = {
     // console.log('scroll called!!!!!S  ');
     // console.log(jdd.config1List.length, jdd.config2List.length);
     if (jdd.config1List.length > 1 || jdd.config2List.length > 1) {
-      $('#preBlock').bind('scroll', function () {
+      $("#preBlock").bind("scroll", function () {
         if (!jdd.isActive) {
           jdd.isActive = true;
           /*
@@ -1338,8 +1337,8 @@ var jdd = {
    * funtion to convert strin of array to string
    */
   listToString: function (list) {
-    var str = '';
-    str = list.join('\r\n').toString();
+    var str = "";
+    str = list.join("\r\n").toString();
     return str;
   },
   /*
@@ -1349,13 +1348,13 @@ var jdd = {
     // console.log('scroll bottom called!!!!!S  ');
     jdd.config1CurrentIndex += 1;
     if (jdd.config1List[jdd.config1CurrentIndex]) {
-      $('#out').text(
+      $("#out").text(
         jdd.listToString(jdd.config1List[jdd.config1CurrentIndex])
       );
     }
     jdd.config2CurrentIndex += 1;
     if (jdd.config2List[jdd.config2CurrentIndex]) {
-      $('#out2').text(
+      $("#out2").text(
         jdd.listToString(jdd.config2List[jdd.config2CurrentIndex])
       );
     }
@@ -1365,7 +1364,7 @@ var jdd = {
       jdd.config1CurrentIndex != jdd.config2List.length ||
       jdd.config2CurrentIndex != jdd.config2List.length
     ) {
-      document.getElementById('preBlock').scrollTop = jdd.blockHeight - 200;
+      document.getElementById("preBlock").scrollTop = jdd.blockHeight - 200;
     }
   },
   /*
@@ -1377,7 +1376,7 @@ var jdd = {
     }
     // console.log('config1CurrentIndex........', jdd.config1CurrentIndex);
     if (jdd.config1List[jdd.config1CurrentIndex]) {
-      $('#out').text(
+      $("#out").text(
         jdd.listToString(jdd.config1List[jdd.config1CurrentIndex])
       );
     }
@@ -1386,7 +1385,7 @@ var jdd = {
     }
     //console.log('config2CurrentIndex........', jdd.config2CurrentIndex);
     if (jdd.config2List[jdd.config2CurrentIndex]) {
-      $('#out2').text(
+      $("#out2").text(
         jdd.listToString(jdd.config2List[jdd.config2CurrentIndex])
       );
     }
@@ -1394,9 +1393,9 @@ var jdd = {
     jdd.preDefinedJSONDiffFunctions();
 
     if (jdd.config1CurrentIndex == 0 && jdd.config2CurrentIndex == 0) {
-      document.getElementById('preBlock').scrollTop = 0;
+      document.getElementById("preBlock").scrollTop = 0;
     } else {
-      document.getElementById('preBlock').scrollTop = 200;
+      document.getElementById("preBlock").scrollTop = 200;
     }
   },
   /*
@@ -1411,52 +1410,52 @@ var jdd = {
       jdd.currentDiff = 0;
       jdd.updateButtonStyles();
     }
-    $('body').removeClass('progress');
-    $('#compare').prop('disabled', false);
+    $("body").removeClass("progress");
+    $("#compare").prop("disabled", false);
   },
   /**
    * Load in the sample data
    */
   loadSampleData: function () {
-    $('#textarealeft').val(
+    $("#textarealeft").val(
       '{"Aidan Gillen": {"array": ["Game of Thron\\"es","The Wire"],"string": "some string","int": 2,"aboolean": true, "boolean": true,"object": {"foo": "bar","object1": {"new prop1": "new prop value"},"object2": {"new prop1": "new prop value"},"object3": {"new prop1": "new prop value"},"object4": {"new prop1": "new prop value"}}},"Amy Ryan": {"one": "In Treatment","two": "The Wire"},"Annie Fitzgerald": ["Big Love","True Blood"],"Anwan Glover": ["Treme","The Wire"],"Alexander Skarsgard": ["Generation Kill","True Blood"], "Clarke Peters": null}'
     );
     /*$('#textarealeft').val('[{  "OBJ_ID": "CN=Kate Smith,OU=Users,OU=Willow,DC=cloudaddc,DC=qalab,DC=cam,DC=novell,DC=com",  "userAccountControl": "512",  "objectGUID": "b3067a77-875b-4208-9ee3-39128adeb654",  "lastLogon": "0",  "sAMAccountName": "ksmith",  "userPrincipalName": "ksmith@cloudaddc.qalab.cam.novell.com",  "distinguishedName": "CN=Kate Smith,OU=Users,OU=Willow,DC=cloudaddc,DC=qalab,DC=cam,DC=novell,DC=com"},{  "OBJ_ID": "CN=Timothy Swan,OU=Users,OU=Willow,DC=cloudaddc,DC=qalab,DC=cam,DC=novell,DC=com",  "userAccountControl": "512",  "objectGUID": "c3f7dae9-9b4f-4d55-a1ec-bf9ef45061c3",  "lastLogon": "130766915788304915",  "sAMAccountName": "tswan",  "userPrincipalName": "tswan@cloudaddc.qalab.cam.novell.com",  "distinguishedName": "CN=Timothy Swan,OU=Users,OU=Willow,DC=cloudaddc,DC=qalab,DC=cam,DC=novell,DC=com"}]');
         $('#textarearight').val('{"foo":[{  "OBJ_ID": "CN=Timothy Swan,OU=Users,OU=Willow,DC=cloudaddc,DC=qalab,DC=cam,DC=novell,DC=com",  "userAccountControl": "512",  "objectGUID": "c3f7dae9-9b4f-4d55-a1ec-bf9ef45061c3",  "lastLogon": "130766915788304915",  "sAMAccountName": "tswan",  "userPrincipalName": "tswan@cloudaddc.qalab.cam.novell.com",  "distinguishedName": "CN=Timothy Swan,OU=Users,OU=Willow,DC=cloudaddc,DC=qalab,DC=cam,DC=novell,DC=com"}]}');*/
-    $('#textarearight').val(
+    $("#textarearight").val(
       '{"Aidan Gillen": {"array": ["Game of Thrones","The Wire"],"string": "some string","int": "2","otherint": 4, "aboolean": "true", "boolean": false,"object": {"foo": "bar"}},"Amy Ryan": ["In Treatment","The Wire"],"Annie Fitzgerald": ["True Blood","Big Love","The Sopranos","Oz"],"Anwan Glover": ["Treme","The Wire"],"Alexander Skarsg?rd": ["Generation Kill","True Blood"],"Alice Farmer": ["The Corner","Oz","The Wire"]}'
     );
   },
 
   getParameterByName: function (name) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'),
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
       results = regex.exec(location.search);
     return results === null
-      ? ''
-      : decodeURIComponent(results[1].replace(/\+/g, ' '));
+      ? ""
+      : decodeURIComponent(results[1].replace(/\+/g, " "));
   },
 };
 
 jQuery(document).ready(function () {
-  $('#compare').click(function () {
+  $("#compare").click(function () {
     jdd.compare();
     jdd.scroll();
   });
 
-  if (jdd.getParameterByName('left')) {
-    $('#textarealeft').val(jdd.getParameterByName('left'));
+  if (jdd.getParameterByName("left")) {
+    $("#textarealeft").val(jdd.getParameterByName("left"));
   }
 
-  if (jdd.getParameterByName('right')) {
-    $('#textarearight').val(jdd.getParameterByName('right'));
+  if (jdd.getParameterByName("right")) {
+    $("#textarearight").val(jdd.getParameterByName("right"));
   }
 
-  if (jdd.getParameterByName('left') && jdd.getParameterByName('right')) {
+  if (jdd.getParameterByName("left") && jdd.getParameterByName("right")) {
     jdd.compare();
   }
 
-  $('#sample').click(function (e) {
+  $("#sample").click(function (e) {
     e.preventDefault();
     jdd.loadSampleData();
   });
@@ -1481,7 +1480,7 @@ jQuery(document).ready(function () {
 // Array.prototype.find
 // https://tc39.github.io/ecma262/#sec-array.prototype.find
 if (!Array.prototype.find) {
-  Object.defineProperty(Array.prototype, 'find', {
+  Object.defineProperty(Array.prototype, "find", {
     value: function (predicate) {
       // 1. Let O be ? ToObject(this value).
       if (this === null) {
@@ -1494,8 +1493,8 @@ if (!Array.prototype.find) {
       var len = o.length >>> 0;
 
       // 3. If IsCallable(predicate) is false, throw a TypeError exception.
-      if (typeof predicate !== 'function') {
-        throw new TypeError('predicate must be a function');
+      if (typeof predicate !== "function") {
+        throw new TypeError("predicate must be a function");
       }
 
       // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
@@ -1529,7 +1528,7 @@ if (!Array.prototype.find) {
 // Array.prototype.findIndex
 // https://tc39.github.io/ecma262/#sec-array.prototype.findIndex
 if (!Array.prototype.findIndex) {
-  Object.defineProperty(Array.prototype, 'findIndex', {
+  Object.defineProperty(Array.prototype, "findIndex", {
     value: function (predicate) {
       // 1. Let O be ? ToObject(this value).
       if (this === null) {
@@ -1542,8 +1541,8 @@ if (!Array.prototype.findIndex) {
       var len = o.length >>> 0;
 
       // 3. If IsCallable(predicate) is false, throw a TypeError exception.
-      if (typeof predicate !== 'function') {
-        throw new TypeError('predicate must be a function');
+      if (typeof predicate !== "function") {
+        throw new TypeError("predicate must be a function");
       }
 
       // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
